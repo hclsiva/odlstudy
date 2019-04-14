@@ -1,0 +1,20 @@
+mvn archetype:generate -DarchetypeGroupId=org.opendaylight.archetypes -DarchetypeArtifactId=opendaylight-startup-archetype \
+-DarchetypeCatalog=remote -DarchetypeVersion=1.1.0-SNAPSHOT
+
+
+feature:repo-add mvn:org.opendaylight.sample/features-hello/0.1.0-SNAPSHOT/xml/features
+
+feature:install -v odl-hello
+feature:install -v odl-hello-rest
+
+curl -u admin:admin -v -X POST -H "Content-Type:application/json" -H "Accept:application/json" -d '{"hello:input": { "name":"India"}}' http://localhost:8181/restconf/operations/hello:hello-world 
+
+
+echo "# odlstudy" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/hclsiva/odlstudy.git
+git push -u origin master
+
+
